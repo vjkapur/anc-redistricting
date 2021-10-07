@@ -2,7 +2,7 @@
 work to gain early understanding of the ANC/SMD-level redistricting of Ward 5 in the District of Columbia
 
 ## background
-The District of Columbia is split into eight wards. Each Ward is split into a variable number (4-7) of Advisory Neighborhood Commissions (ANCs), which are further split into a variable number ([2-12](https://twitter.com/ANCJonah/status/1444102088187908096?s=20)) of Single Member Districts (SMDs). The boundaries of all of these subdivisions are subject to change in response to each US Census.
+The District of Columbia is split into eight wards. Each Ward is split into a variable number (4-7) of Advisory Neighborhood Commissions (ANCs) lettered A up to G, which are further split into a variable number ([2-12](https://twitter.com/ANCJonah/status/1444102088187908096?s=20)) of Single Member Districts (SMDs). ANCs are identified by Ward and letter (e.g. 5D for the nominally fourth of Ward 5) and SMDs are identified by ANC and SMD number (e.g. 5D03 for the third SMD within ANC 5D). The boundaries of all of these subdivisions are subject to change in response to each US Census.
 
 Residents of SMDs elect ANC Commissioners who then serve within the SMD and on committee with the broader ANC. ANC Commissioner is a voluntary, unpaid, difficult, and important job. You can learn about it [here](https://anc.dc.gov/page/about-ancs) and [here](https://ggwash.org/view/43008/advisory-neighborhood-commissions-explained). Unfortunately, these positions often go vacant, or [worse](https://twitter.com/PritaPiekara/status/1445941469999730688?s=20).
 
@@ -12,7 +12,7 @@ The TL;DR is:
 - Ward-level districting is currently being debated and primarily concerns the contentious issue of shifting portions of Ward 6 into Wards 7 and 8.
 - Ward 5's population growth is nontrivial, but tracks with the District as a whole, so significant Ward-level redistricting is unlikely.
 - Ward-level redistricting will take a while, and only after that will ANC-level redistricting become a concern.
-- ANCs are nonpartisan offices not subject to a primary, so ANC candidate sign-up only becomes a hard deadline in summer 2022, so we might not know the final boundaries until then.
+- ANCs are nonpartisan offices not subject to a primary, so ANC candidate sign-up only becomes a hard deadline in summer 2022. We might not know the final boundaries until then.
 
 ## purpose
 The purpose of this repository is to explore available data and begin forming an understanding of the redistricting concerns Ward 5 will likely have. The scope may grow and shrink over time.
