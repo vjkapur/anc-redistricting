@@ -6,7 +6,7 @@ The District of Columbia is split into eight wards. Each Ward is split into a va
 
 Residents of SMDs elect ANC Commissioners who then serve within the SMD and on committee with the broader ANC. ANC Commissioner is a voluntary, unpaid, difficult, and important job. You can learn about it [here](https://anc.dc.gov/page/about-ancs) and [here](https://ggwash.org/view/43008/advisory-neighborhood-commissions-explained). Unfortunately, these positions often go vacant, or [worse](https://twitter.com/PritaPiekara/status/1445941469999730688?s=20).
 
-2022 is a redistricting year. You can learn more about the redistricting process (here)[https://planning.dc.gov/page/district-columbia-2021-ward-redistricting) and [here](https://dcist.com/story/21/05/25/as-d-c-kicks-off-redistricting-process-two-concerns-emerge-timing-and-parking/).
+2022 is a redistricting year. You can learn more about the redistricting process [here](https://planning.dc.gov/page/district-columbia-2021-ward-redistricting) and [here](https://dcist.com/story/21/05/25/as-d-c-kicks-off-redistricting-process-two-concerns-emerge-timing-and-parking/).
 
 The TL;DR is:
 - Ward-level districting is currently being debated and primarily concerns the contentious issue of reapportioning Ward 6's booming population to Wards 7 and 8.
