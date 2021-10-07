@@ -9,7 +9,7 @@ Residents of SMDs elect ANC Commissioners who then serve within the SMD and on c
 2022 is a redistricting year. You can learn more about the redistricting process [here](https://planning.dc.gov/page/district-columbia-2021-ward-redistricting) and [here](https://dcist.com/story/21/05/25/as-d-c-kicks-off-redistricting-process-two-concerns-emerge-timing-and-parking/).
 
 The TL;DR is:
-- Ward-level districting is currently being debated and primarily concerns the contentious issue of reapportioning Ward 6's booming population to Wards 7 and 8.
+- Ward-level districting is currently being debated and primarily concerns the contentious issue of shifting portions of Ward 6 into Wards 7 and 8.
 - Ward 5's population growth is nontrivial, but tracks with the District as a whole, so significant Ward-level redistricting is unlikely.
 - Ward-level redistricting will take a while, and only after that will ANC-level redistricting become a concern.
 - ANCs are nonpartisan offices not subject to a primary, so ANC candidate sign-up only becomes a hard deadline in summer 2022, so we might not know the final boundaries until then.
