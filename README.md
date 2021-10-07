@@ -1,5 +1,5 @@
 # dcward5-redistricting
-work to gain early understanding of the ANC/SMD-level redistrict of Ward 5 of the District of Columbiai
+work to gain early understanding of the ANC/SMD-level redistrict of Ward 5 of the District of Columbia
 
 ## background
 The District of Columbia is split into eight wards. Each Ward is split into a variable number (4-7) of Advisory Neighborhood Commissions (ANCs), which are further split into a variable number ([2-12](https://twitter.com/ANCJonah/status/1444102088187908096?s=20)) of Single Member Districts (SMDs). The boundaries of all of these subdivisions are subject to change in response to each US Census.
