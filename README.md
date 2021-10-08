@@ -18,3 +18,9 @@ The TL;DR is:
 The purpose of this repository is to explore available data and begin forming an understanding of the redistricting concerns Ward 5 will likely have. The scope may grow and shrink over time.
 
 Initially, the plan is to crunch the ANC- and SMD-level populations for pre-2022 boundaries to identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data). Any code artifacts will live in this Github repo for now.
+
+## data sources
+All data is from [OpenDataDC](https://opendata.dc.gov) and must be downloaded as geojson placed in a `data` directory within the repo
+- [SMDs from 2013](https://opendata.dc.gov/datasets/DCGIS::single-member-district-from-2013/about)
+- [Census Blocks from 2010](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2010/about)
+- [Census Blocks from 2020](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2020/about)
