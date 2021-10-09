@@ -31,4 +31,9 @@ smd_with_pop2020 = cb20_with_smd.groupby('SMD_ID')['population2020'].sum()
 
 results = smd_with_pop2010.to_frame().join(smd_with_pop2020.to_frame())
 
+results['change'] = (results['population2020']-results['population2010'])/results['population2010']
+
+# render change as a percentage
+results['change'] = ["%.2f%%" % elem for elem in (results['population2020']-results['population2010'])/results['population2010']*100]
+
 results.to_csv(r'smd-results.csv', index=True, header=True)
