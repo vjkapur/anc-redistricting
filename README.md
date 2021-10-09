@@ -30,7 +30,7 @@ All data is from [OpenDataDC](https://opendata.dc.gov) and must be downloaded as
 ### stuff that could be done
 - better presentation for the SMD-level population numbers, like a table including population changes for Ward, ANC, and SMD boundaries and percent change.
 - a visualization of the population change, possibly including block-level
-- developing a tool to allow experimenting with different districts, similar to the [Ward-level tool](dcredistricting.esriemcs.com) maintained by DC
+- developing a tool to allow experimenting with different districts, similar to the [Ward-level tool](dcredistricting.esriemcs.com) maintained by DC; some sources mention that tool will do ANC districts as well, but it doesn't appear to yet
 
 ## usage
 To run:
