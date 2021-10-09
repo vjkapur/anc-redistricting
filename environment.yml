@@ -1,9 +1,5 @@
-name: dcward5-redistricting
+name: anc-redistricting
 
 dependencies:
   - python
-  - descartes
   - geopandas
-  - matplotlib
-  - numpy
-  - pandas
