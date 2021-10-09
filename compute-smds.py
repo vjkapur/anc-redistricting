@@ -5,7 +5,7 @@ import geopandas as gpd
 
 smds = "data/Single_Member_District_from_2013.geojson"
 smd_df = gpd.read_file(smds)
-# ward5_df = smd_df.query('ANC_ID.str.contains("5")', engine='python')[['SMD_ID', 'geometry']]
+smd_df.rename(columns={'SMD_ID':'SMD'}, inplace=True)
 
 cb10 = "data/Census_Blocks_in_2010.geojson"
 cb10_df = gpd.read_file(cb10)[['BLOCK','P0010001','geometry']]
@@ -23,17 +23,19 @@ cb20_df = cb20_df.query("population2020>0")
 cb10_df['geometry'] = cb10_df['geometry'].centroid
 cb20_df['geometry'] = cb20_df['geometry'].centroid
 
-cb10_with_smd = gpd.sjoin(cb10_df[['BLOCK','population2010','geometry']], smd_df[['SMD_ID', 'geometry']], how='left', op='within')
-cb20_with_smd = gpd.sjoin(cb20_df[['BLOCK','population2020','geometry']], smd_df[['SMD_ID', 'geometry']], how='left', op='within')
+cb10_with_smd = gpd.sjoin(cb10_df[['BLOCK','population2010','geometry']], smd_df[['SMD', 'geometry']], how='left', op='within')
+cb20_with_smd = gpd.sjoin(cb20_df[['BLOCK','population2020','geometry']], smd_df[['SMD', 'geometry']], how='left', op='within')
 
-smd_with_pop2010 = cb10_with_smd.groupby('SMD_ID')['population2010'].sum()
-smd_with_pop2020 = cb20_with_smd.groupby('SMD_ID')['population2020'].sum()
+smd_with_pop2010 = cb10_with_smd.groupby('SMD')['population2010'].sum()
+smd_with_pop2020 = cb20_with_smd.groupby('SMD')['population2020'].sum()
 
 results = smd_with_pop2010.to_frame().join(smd_with_pop2020.to_frame())
 
+# calculate percent change and render as a percent
 results['change'] = (results['population2020']-results['population2010'])/results['population2010']
-
-# render change as a percentage
 results['change'] = ["%.2f%%" % elem for elem in (results['population2020']-results['population2010'])/results['population2010']*100]
+
+# make presentable headers
+results.rename(columns={"population2010": "2010 population", "population2020": "2020 population"}, inplace=True)
 
 results.to_csv(r'smd-results.csv', index=True, header=True)
