@@ -17,10 +17,39 @@ The TL;DR is:
 ## purpose
 The purpose of this repository is to explore available data and begin forming an understanding of the redistricting concerns communities will likely have. The scope may grow and shrink over time.
 
-Initially, the plan is to crunch the ANC- and SMD-level populations for pre-2022 boundaries to identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data). Any code artifacts will live in this Github repo for now.
-
 ## data sources
 All data is from [OpenDataDC](https://opendata.dc.gov) and must be downloaded as geojson placed in a `data` directory within the repo
 - [SMDs from 2013](https://opendata.dc.gov/datasets/DCGIS::single-member-district-from-2013/about)
 - [Census Blocks from 2010](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2010/about)
 - [Census Blocks from 2020](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2020/about)
+
+## methodology
+### stuff that's done
+**SMD-level population computations for pre-2022 boundaries:** To identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data), ''compute.py'' crunches the numbers using the existing (2013-2022) SMD boundaries against block-level Census data from 2010 and 2020. Because the boundaries don't align precisely, and it's assumed that a Census block would never be split by an ANC boundary, the calculation attributes a block's whole population to the SMD containing the block's centroid, or geographical center. This method could inadvertently modify ANCs on the boundaries for the 2020 numbers, because new blocks will reshape existing boundary contours in some places where new construction/infrastructure has created new blocks. In any case, the results do work out so that the sum of computed SMD populations match the District-level populations in sum.
+
+### stuff that could be done
+- better presentation for the SMD-level population numbers, like a table including population changes for Ward, ANC, and SMD boundaries and percent change.
+- a visualization of the population change, possibly including block-level
+- developing a tool to allow experimenting with different districts, similar to the [Ward-level tool](dcredistricting.esriemcs.com) maintained by DC
+
+## usage
+To run:
+1. download the `geojson`-formatted files for the three **data sources** above and place them in a `data` folder in the repo
+1. either use the included conda environment (requires Anaconda or [miniconda]) to pull package dependencies through an environment:
+
+```shell
+conda env create
+conda activate anc-redistricting
+```
+
+or use `pip` (assumes python is already installed)
+
+```shell
+pip install geopandas
+```
+
+1. run `compute-smds.py`
+
+```shell
+python compute-smds.py
+```
