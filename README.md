@@ -36,20 +36,20 @@ All data is from [OpenDataDC](https://opendata.dc.gov) and must be downloaded as
 To run:
 1. download the `geojson`-formatted files for the three **data sources** above and place them in a `data` folder in the repo
 1. either use the included conda environment (requires Anaconda or [miniconda]) to pull package dependencies through an environment:
+   
+   ```shell
+   conda env create
+   conda activate anc-redistricting
+   ```
+   
+   or use `pip` (assumes python is already installed)
 
-```shell
-conda env create
-conda activate anc-redistricting
-```
-
-or use `pip` (assumes python is already installed)
-
-```shell
-pip install geopandas
-```
+   ```shell
+   pip install geopandas
+   ```
 
 1. run `compute-smds.py`
-
-```shell
-python compute-smds.py
-```
+   
+   ```shell
+   python compute-smds.py
+   ```
