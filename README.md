@@ -18,14 +18,14 @@ The TL;DR is:
 The purpose of this repository is to explore available data and begin forming an understanding of the redistricting concerns communities will likely have. The scope may grow and shrink over time.
 
 ## data sources
-All data is from [OpenDataDC](https://opendata.dc.gov) and must be downloaded as geojson placed in a `data` directory within the repo
+All data is from [OpenDataDC](https://opendata.dc.gov)
 - [SMDs from 2013](https://opendata.dc.gov/datasets/DCGIS::single-member-district-from-2013/about)
 - [Census Blocks from 2010](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2010/about)
 - [Census Blocks from 2020](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2020/about)
 
 ## methodology
 ### stuff that's done
-**SMD-level population computations for pre-2022 boundaries:** To identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data), ''compute.py'' crunches the numbers using the existing (2013-2022) SMD boundaries against block-level Census data from 2010 and 2020. Because the boundaries don't align precisely, and it's assumed that a Census block would never be split by an ANC boundary, the calculation attributes a block's whole population to the SMD containing the block's centroid, or geographical center. This method could inadvertently modify ANCs on the boundaries for the 2020 numbers, because new blocks will reshape existing boundary contours in some places where new construction/infrastructure has created new blocks. In any case, the results do work out so that the sum of computed SMD populations match the District-level populations in sum.
+**SMD-level population computations for pre-2022 boundaries:** To identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data), `compute-smds.py` crunches the numbers using the existing (2013-2022) SMD boundaries against block-level Census data from 2010 and 2020. Because the boundaries don't align precisely, and it's assumed that a Census block would never be split by an ANC boundary, the calculation attributes a block's whole population to the SMD containing the block's centroid, or geographical center. This method could inadvertently modify ANC boundaries on the margins for the 2020 numbers, because new blocks will reshape existing boundary contours in some places where new construction/infrastructure has created new blocks. In any case, the results do work out so that the sum of computed SMD populations match the District-level populations for both Census years.
 
 ### stuff that could be done
 - better presentation for the SMD-level population numbers, like a table including population changes for Ward, ANC, and SMD boundaries and percent change.
