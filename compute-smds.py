@@ -31,4 +31,4 @@ smd_with_pop2020 = cb20_with_smd.groupby('SMD_ID')['population2020'].sum()
 
 results = smd_with_pop2010.to_frame().join(smd_with_pop2020.to_frame())
 
-results.query("SMD_ID.str.contains('5[BC]')",engine='python')
+results.to_csv(r'smd-results.csv', index=True, header=True)
