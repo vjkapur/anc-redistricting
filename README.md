@@ -23,7 +23,7 @@ Most data is from [OpenDataDC](https://opendata.dc.gov)
 - [Census Blocks from 2010](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2010/about)
 - [Census Blocks from 2020](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2020/about)
 
-The official SMD-level population counts come [courtesy of ANC Commissioner Corey Holman](https://twitter.com/coreyholman/status/1468403875375951872?s=20) who manually copied them over from a Council report:
+The official SMD-level population counts come [courtesy of ANC Commissioner Corey Holman](https://twitter.com/coreyholman/status/1468403875375951872?s=20) who transcribed them from [the 2012 Council report](https://lims.dccouncil.us/downloads/LIMS/26284/Committee_Report/B19-0528-COMMITTEEREPORT.pdf):
 - [SMD populations, 2010 Census and 2013 boundaries](https://coreyholman.com/wp-content/uploads/2021/12/SMDPopulation.csv).
 
 ## methodology
