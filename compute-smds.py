@@ -7,6 +7,11 @@ smds = "data/Single_Member_District_from_2013.geojson"
 smd_df = gpd.read_file(smds)
 smd_df.rename(columns={'SMD_ID':'SMD'}, inplace=True)
 
+council10 = "data/SMDPopulation.csv"
+council10_df = gpd.read_file(council10)[['SMD', 'Population']]
+council10_df.rename(columns={'Population':'council2010'}, inplace=True)
+council10_df['council2010'] = council10_df['council2010'].astype(int)
+
 cb10 = "data/Census_Blocks_in_2010.geojson"
 cb10_df = gpd.read_file(cb10)[['BLOCK','P0010001','geometry']]
 cb10_df.rename(columns={'P0010001':'population2010'}, inplace=True)
@@ -30,12 +35,16 @@ smd_with_pop2010 = cb10_with_smd.groupby('SMD')['population2010'].sum()
 smd_with_pop2020 = cb20_with_smd.groupby('SMD')['population2020'].sum()
 
 results = smd_with_pop2010.to_frame().join(smd_with_pop2020.to_frame())
+results = council10_df.join(results, on=["SMD"], how="inner")
+
+# calculate the delta of block approximation for 2010
+results['block-approx miscount (2010)'] = results['population2010']-results['council2010']
 
 # calculate percent change and render as a percent
-results['change'] = (results['population2020']-results['population2010'])/results['population2010']
-results['change'] = ["%.2f%%" % elem for elem in (results['population2020']-results['population2010'])/results['population2010']*100]
+results['block-approx change'] = (results['population2020']-results['population2010'])/results['population2010']
+results['block-approx change'] = ["%.2f%%" % elem for elem in (results['population2020']-results['population2010'])/results['population2010']*100]
 
 # make presentable headers
-results.rename(columns={"population2010": "2010 population", "population2020": "2020 population"}, inplace=True)
+results.rename(columns={"council2010": "official 2010 population", "population2010": "block-approx 2010 population", "population2020": "block-approx 2020 population"}, inplace=True)
 
 results.to_csv(r'smd-results.csv', index=True, header=True)
