@@ -37,8 +37,8 @@ The official SMD-level population counts come [courtesy of ANC Commissioner Core
 
 ## usage
 To run:
-1. download the `geojson`-formatted files for the three **data sources** above and place them in a `data` folder in the repo
-1. either use the included conda environment (requires Anaconda or [miniconda]) to pull package dependencies through an environment:
+1. download the `geojson`-formatted files for the three **OpenDataDC data sources** above, plus the CSV of transcribed Council report data, and place them in a `data` folder in the repo
+1. either use the included conda environment (requires Anaconda or [miniconda](https://docs.conda.io/en/latest/miniconda.html)) to pull package dependencies through an environment:
    
    ```shell
    conda env create
