@@ -34,17 +34,27 @@ cb20_with_smd = gpd.sjoin(cb20_df[['BLOCK','population2020','geometry']], smd_df
 smd_with_pop2010 = cb10_with_smd.groupby('SMD')['population2010'].sum()
 smd_with_pop2020 = cb20_with_smd.groupby('SMD')['population2020'].sum()
 
-results = smd_with_pop2010.to_frame().join(smd_with_pop2020.to_frame())
-results = council10_df.join(results, on=["SMD"], how="inner")
+smd_results = smd_with_pop2010.to_frame().join(smd_with_pop2020.to_frame())
+smd_results = council10_df.join(smd_results, on=["SMD"], how="inner")
 
 # calculate the delta of block approximation for 2010
-results['block-approx miscount (2010)'] = results['population2010']-results['council2010']
+smd_results['block-approx miscount (2010)'] = smd_results['population2010']-smd_results['council2010']
 
 # calculate percent change and render as a percent
-results['block-approx change'] = (results['population2020']-results['population2010'])/results['population2010']
-results['block-approx change'] = ["%.2f%%" % elem for elem in (results['population2020']-results['population2010'])/results['population2010']*100]
+smd_results['block-approx change'] = (smd_results['population2020']-smd_results['population2010'])/smd_results['population2010']
+smd_results['block-approx change'] = ["%.2f%%" % elem for elem in (smd_results['population2020']-smd_results['population2010'])/smd_results['population2010']*100]
 
 # make presentable headers
-results.rename(columns={"council2010": "official 2010 population", "population2010": "block-approx 2010 population", "population2020": "block-approx 2020 population"}, inplace=True)
+smd_results.rename(columns={"council2010": "official 2010 population", "population2010": "block-approx 2010 population", "population2020": "block-approx 2020 population"}, inplace=True)
+smd_results.to_csv(r'smd-results.csv', index=True, header=True)
 
-results.to_csv(r'smd-results.csv', index=True, header=True)
+# now sum SMDs to output ANC counts
+anc_results = smd_results
+anc_results['ANC'] = smd_results['SMD'].str.slice(start=0, stop=2, step=1)
+smd_counts = anc_results.groupby('ANC')['SMD'].count()
+anc_results = anc_results.groupby('ANC')[['official 2010 population', 'block-approx 2010 population', 'block-approx 2020 population', 'block-approx miscount (2010)']].sum()
+
+# add helpful stats
+anc_results['2013 SMD count'] = smd_counts
+anc_results['2020 pop / 2000'] = ["%.2f" % elem for elem in (anc_results['block-approx 2020 population']/2000)]
+anc_results.to_csv(r'anc-results.csv', index=True, header=True)

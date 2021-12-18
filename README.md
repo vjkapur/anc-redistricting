@@ -6,7 +6,7 @@ The District of Columbia is split into eight wards. Each Ward is split into a va
 
 Residents of each SMD elect an ANC Commissioner who then serves within the SMD and on committee with the broader ANC. ANC Commissioner is a voluntary, unpaid, difficult, and important job. You can learn about it [here](https://anc.dc.gov/page/about-ancs) and [here](https://ggwash.org/view/43008/advisory-neighborhood-commissions-explained). Unfortunately, these positions often go vacant, or [worse](https://twitter.com/PritaPiekara/status/1445941469999730688?s=20).
 
-2022 is a redistricting year. You can learn more about the redistricting process [here](https://planning.dc.gov/page/district-columbia-2021-ward-redistricting) and [here](https://dcist.com/story/21/05/25/as-d-c-kicks-off-redistricting-process-two-concerns-emerge-timing-and-parking/).
+2022 is a redistricting year. You can learn more about the redistricting process [here](https://planning.dc.gov/page/district-columbia-2021-ward-redistricting), [here](https://www.elissasilverman.com/redistricting), and [here](https://dcist.com/story/21/05/25/as-d-c-kicks-off-redistricting-process-two-concerns-emerge-timing-and-parking/).
 
 The TL;DR is:
 - Ward-level districting is currently being debated and primarily concerns the contentious issue of shifting portions of Ward 6 into Wards 7 and 8.
@@ -28,31 +28,35 @@ The official SMD-level population counts come [courtesy of ANC Commissioner Core
 
 ## methodology
 ### stuff that's done
-**SMD-level population computations for pre-2022 boundaries:** To identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data), `compute-smds.py` crunches the numbers using the existing (2013-2022) SMD boundaries against block-level Census data from 2010 and 2020. Because the boundaries don't align precisely, and it's assumed that a Census block would never be split by an ANC boundary (update: [this assumption is wrong!](https://twitter.com/coreyholman/status/1426168813628833796?s=20) The Council's official population counts may account for block-splitting, but it's unknown how), the calculation attributes a block's whole population to the SMD containing the block's centroid, or geographical center. This method could inadvertently modify ANC boundaries on the margins for the 2020 numbers, because new blocks will reshape existing boundary contours in some places where new construction/infrastructure has created new blocks. In any case, the results do work out so that the sum of computed SMD populations match the District-level populations for both Census years.
+**SMD-level population computations for pre-2022 boundaries:** To identify imbalances created by the [2020 Census numbers](https://planning.dc.gov/publication/2020-census-information-and-data), `compute-districts.py` crunches the numbers using the existing (2013-2022) SMD boundaries against block-level Census data from 2010 and 2020. The calculation attributes a block's whole population to the SMD containing the block's centroid, or geographical center. [ANC/SMD boundaries do not respect Census blocks](https://twitter.com/coreyholman/status/1426168813628833796?s=20), so these block-level approximations are not entirely accurate for either 2010 or 2020. The Council's official population counts, which presumably account account for block-splitting, are also included in the results for reference. Some additional block-splitting likely occurs for 2020, because new block boundaries will intersect existing political boundaries in some places where new construction/infrastructure has created new blocks. In any case, the results do work out so that the sum of computed SMD populations match the District-level populations for both Census years, and 2010 approximations usually come out close to the official 2010 numbers (with some glaring exceptions).
+
+**ANC-level population computations for pre-2022 boundaries:** Because ANC redistricting may begin at the ANC level rather than the SMD level, as advocated by Conor Shaw in [this piece](https://ggwash.org/view/83332/why-we-should-increase-the-number-of-ward-5-advisory-neighborhood-commissions), `compute-districts.py` will also output ANC-level population counts.
 
 ### stuff that could be done
+- recomputing pre-2022 SMD and ANC populations against 2022 Ward boundaries (with fractionally transferred districts forking between Wards)
 - better presentation for the SMD-level population numbers, like a table including population changes for Ward, ANC, and SMD boundaries and percent change.
 - a visualization of the population change, possibly including block-level
-- developing a tool to allow experimenting with different districts, similar to the [Ward-level tool](dcredistricting.esriemcs.com) maintained by DC; some sources mention that tool will do ANC districts as well, but it doesn't appear to yet
+- better accounting for blocksplitting, either by adding data or imputing from existing miscount calculations
+- developing a tool to allow experimenting with and algorithmically generating different districts, possibly tying into the  [official redistricting tool](https://dcredistricting.esriemcs.com) maintained by DC; which can be used for ANC districting through some common techniques that are limiting (cannot easily edit defined districts, cannot split blocks)
 
 ## usage
 To run:
 1. download the `geojson`-formatted files for the three **OpenDataDC data sources** above, plus the CSV of transcribed Council report data, and place them in a `data` folder in the repo
 1. either use the included conda environment (requires Anaconda or [miniconda](https://docs.conda.io/en/latest/miniconda.html)) to pull package dependencies through an environment:
-   
+
    ```shell
    conda env create
    conda activate anc-redistricting
    ```
-   
+
    or use `pip` (assumes python is already installed)
 
    ```shell
    pip install geopandas
    ```
 
-1. run `compute-smds.py`
-   
+1. run `compute-districts.py`
+
    ```shell
-   python compute-smds.py
+   python compute-districts.py
    ```
