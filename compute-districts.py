@@ -3,6 +3,10 @@
 import sys
 import geopandas as gpd
 
+wards12 = "data/Ward_from_2012.geojson"
+wards12_df = gpd.read_file(wards12)[['WARD', 'geometry']]
+wards12_df.rename(columns={'WARD':'Ward'}, inplace=True)
+
 smds = "data/Single_Member_District_from_2013.geojson"
 smd_df = gpd.read_file(smds)
 smd_df.rename(columns={'SMD_ID':'SMD'}, inplace=True)
@@ -46,7 +50,7 @@ smd_results['block-approx change'] = ["%.2f%%" % elem for elem in (smd_results['
 
 # make presentable headers
 smd_results.rename(columns={"council2010": "official 2010 population", "population2010": "block-approx 2010 population", "population2020": "block-approx 2020 population"}, inplace=True)
-smd_results.to_csv(r'smd-results.csv', index=True, header=True)
+smd_results.to_csv(r'smd-results-2021.csv', index=True, header=True)
 
 # now sum SMDs to output ANC counts
 anc_results = smd_results
@@ -57,4 +61,11 @@ anc_results = anc_results.groupby('ANC')[['official 2010 population', 'block-app
 # add helpful stats
 anc_results['2013 SMD count'] = smd_counts
 anc_results['2020 pop / 2000'] = ["%.2f" % elem for elem in (anc_results['block-approx 2020 population']/2000)]
-anc_results.to_csv(r'anc-results.csv', index=True, header=True)
+anc_results.to_csv(r'anc-results-2021.csv', index=True, header=True)
+
+# consider the 2022 landscape, wherein Ward boundaries may split districts
+cb20_with_ward_smd = gpd.sjoin(cb20_with_smd[['BLOCK','population2020','SMD','geometry']], wards12_df[['Ward', 'geometry']], how='left', op='within')
+cb20_with_ward_smd['Ward-qualified SMD'] = cb20_with_ward_smd['Ward'].astype(str).str.cat(cb20_with_ward_smd['SMD'], sep='/')
+smd22_results = cb20_with_ward_smd.groupby('Ward-qualified SMD')[['population2020']].sum()
+smd22_results.rename(columns={"population2020": "block-approx 2020 population"}, inplace=True)
+smd22_results.to_csv(r'smd-results-2022.csv', index=True, header=True)
