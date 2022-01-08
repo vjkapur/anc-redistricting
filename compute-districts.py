@@ -7,6 +7,10 @@ wards12 = "data/Ward_from_2012.geojson"
 wards12_df = gpd.read_file(wards12)[['WARD', 'geometry']]
 wards12_df.rename(columns={'WARD':'Ward'}, inplace=True)
 
+wards22 = "data/Ward_from_2022.geojson"
+wards22_df = gpd.read_file(wards22)[['WARD', 'geometry']]
+wards22_df.rename(columns={'WARD':'Ward'}, inplace=True)
+
 smds = "data/Single_Member_District_from_2013.geojson"
 smd_df = gpd.read_file(smds)
 smd_df.rename(columns={'SMD_ID':'SMD'}, inplace=True)
@@ -64,7 +68,7 @@ anc_results['2020 pop / 2000'] = ["%.2f" % elem for elem in (anc_results['block-
 anc_results.to_csv(r'anc-results-2021.csv', index=True, header=True)
 
 # consider the 2022 landscape, wherein Ward boundaries may split districts
-cb20_with_ward_smd = gpd.sjoin(cb20_with_smd[['BLOCK','population2020','SMD','geometry']], wards12_df[['Ward', 'geometry']], how='left', op='within')
+cb20_with_ward_smd = gpd.sjoin(cb20_with_smd[['BLOCK','population2020','SMD','geometry']], wards22_df[['Ward', 'geometry']], how='left', op='within')
 cb20_with_ward_smd['Ward-qualified SMD'] = cb20_with_ward_smd['Ward'].astype(str).str.cat(cb20_with_ward_smd['SMD'], sep='/')
 smd22_results = cb20_with_ward_smd.groupby('Ward-qualified SMD')[['population2020']].sum()
 smd22_results.rename(columns={"population2020": "block-approx 2020 population"}, inplace=True)

@@ -22,6 +22,8 @@ Most data is from [OpenDataDC](https://opendata.dc.gov)
 - [SMDs from 2013](https://opendata.dc.gov/datasets/DCGIS::single-member-district-from-2013/about)
 - [Census Blocks from 2010](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2010/about)
 - [Census Blocks from 2020](https://opendata.dc.gov/datasets/DCGIS::census-blocks-in-2020/about)
+- [Wards from 2012](https://opendata.dc.gov/datasets/DCGIS::ward-from-2012/about)
+- [Wards from 2022](https://opendata.dc.gov/datasets/DCGIS::ward-from-2022/about)
 
 The official SMD-level population counts come [courtesy of ANC Commissioner Corey Holman](https://twitter.com/coreyholman/status/1468403875375951872?s=20) who transcribed them from [the 2012 Council report](https://lims.dccouncil.us/downloads/LIMS/26284/Committee_Report/B19-0528-COMMITTEEREPORT.pdf):
 - [SMD populations, 2012 Council report](https://coreyholman.com/wp-content/uploads/2021/12/SMDPopulation.csv).
@@ -32,8 +34,9 @@ The official SMD-level population counts come [courtesy of ANC Commissioner Core
 
 **ANC-level population computations for pre-2022 boundaries:** Because ANC redistricting may begin at the ANC level rather than the SMD level, as advocated by Conor Shaw in [this piece](https://ggwash.org/view/83332/why-we-should-increase-the-number-of-ward-5-advisory-neighborhood-commissions), `compute-districts.py` will also output ANC-level population counts.
 
+**2013 SMD and ANC populations against 2022 Ward boundaries** (with fractionally transferred districts forking between Wards): this reflects that landscape for calendar year 2022, where some ANCs and SMDs are newly forked by Ward boundaries. The CSV generated here has one row for every Ward-qualified SMD, so an SMD split by Ward boundaries will have separate rows with block-approximated population breakdown for the intersection of boundaries.
+
 ### stuff that could be done
-- recomputing pre-2022 SMD and ANC populations against 2022 Ward boundaries (with fractionally transferred districts forking between Wards)
 - better presentation for the SMD-level population numbers, like a table including population changes for Ward, ANC, and SMD boundaries and percent change.
 - a visualization of the population change, possibly including block-level
 - better accounting for blocksplitting, either by adding data or imputing from existing miscount calculations
