@@ -64,6 +64,7 @@ anc_results = anc_results.groupby('ANC')[['official 2010 population', 'block-app
 
 # add helpful stats
 anc_results['2013 SMD count'] = smd_counts
+anc_results['2020 pop / 1900'] = ["%.2f" % elem for elem in (anc_results['block-approx 2020 population']/1900)]
 anc_results['2020 pop / 2000'] = ["%.2f" % elem for elem in (anc_results['block-approx 2020 population']/2000)]
 anc_results.to_csv(r'anc-results-2021.csv', index=True, header=True)
 
